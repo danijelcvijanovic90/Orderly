@@ -1,8 +1,8 @@
 <?php
 
-namespace PROJECT\Models;
-use Services\Session_service;
-use Models\User;
+namespace PROJECT\Controllers;
+use PROJECT\Services\Session_service;
+use PROJECT\Models\User;
 
 
 class User_controller

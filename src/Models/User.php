@@ -1,6 +1,10 @@
 <?php
 
+
 namespace PROJECT\Models;
+use PDO;
+
+
 
 class User extends Db
 {
@@ -17,7 +21,7 @@ class User extends Db
 
     public function add_user(string $name,string $surname,string $email,string $password,string $role,int $company_id,string $username): void
     {
-        $stmt = $this -> pdo -> prepare ("INSERT INTO user (name,surname,email,password,role,company_id,username) VALUES(:name,:surname,:password,:email,:role,:company_id,:username))");
+        $stmt = $this -> pdo -> prepare ("INSERT INTO user (name,surname,email,password,role,company_id,username) VALUES(:name,:surname,:email,:password,:role,:company_id,:username)");
         $stmt -> bindparam (":name",$name);
         $stmt -> bindparam (":surname",$surname);
         $stmt -> bindparam (":email",$email);
@@ -29,13 +33,14 @@ class User extends Db
 
     }
 
-    public function get_user_by_username(string $username): array
+    public function get_user_by_username(string $username): ?array
     {
         $stmt = $this -> pdo -> prepare ("SELECT * FROM user WHERE username = :username");
         $stmt -> bindparam(":username",$username);
         $stmt -> execute();
 
-        return $stmt -> fetch(PDO::FETCH_ASSOC);   
+        $data = $stmt -> fetch(PDO::FETCH_ASSOC);
+        return $data ?: null; //if there is no user in $username return ?: null (false)  
     }
 
     public function get_all_users() :array
@@ -46,15 +51,15 @@ class User extends Db
         return $stmt -> fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function get_user_by_id(string $username): int
+    public function get_user_by_id(int $id): ?array
     {
-        $stmt = $this -> pdo -> prepare("SELECT id FROM user WHERE username = :username");
-        $stmt -> bindparam(":username",$username);
+        $stmt = $this -> pdo -> prepare("SELECT * FROM user WHERE id = :id");
+        $stmt -> bindparam(":id",$id);
         $stmt -> execute();
 
-        $user = $stmt -> fetchColumn();
+        $user = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-        return $user;
+        return $user ?: null;
     }
 
 } 
