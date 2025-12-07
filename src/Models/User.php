@@ -29,6 +29,15 @@ class User extends Db
 
     }
 
+    public function get_user_by_username(string $username): array
+    {
+        $stmt = $this -> pdo -> prepare ("SELECT * FROM user WHERE username = :username");
+        $stmt -> bindparam(":username",$username);
+        $stmt -> execute();
+
+        return $stmt -> fetch(PDO::FETCH_ASSOC);   
+    }
+
     public function get_all_users() :array
     {
         $stmt = $this -> pdo -> prepare ("SELECT * FROM user");

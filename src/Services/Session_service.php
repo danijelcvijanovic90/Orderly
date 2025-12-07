@@ -19,4 +19,14 @@ class Session_service
             session_destroy();
         }
     }
+
+    public function get_from_session(string $key): mixed
+    {
+        return $_SESSION[$key];
+    }
+
+    public function set_session(string $key,mixed $value): void
+    {
+        $_SESSION[$key] = $value;
+    }
 }
