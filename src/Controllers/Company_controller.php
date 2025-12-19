@@ -28,9 +28,13 @@ class Company_controller
             die("Company allready exists");
         }
 
-        $company->add_company($data['name'],$data['address'],$data['notes']);
+        $company->add_company($data['name'],$data['address'],$data['notes']); 
 
-       
+    }
 
+    public function view_companies():array
+    {
+        $company=new Company();
+        return $resul=$company->get_all_companies();
     }
 }

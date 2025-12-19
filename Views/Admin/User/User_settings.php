@@ -100,7 +100,8 @@ use PROJECT\Services\Session_service;
             <th>Email</th>
             <th>Company</th>
             <th>Role</th>
-            <th>Delete user</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
 
@@ -114,7 +115,16 @@ use PROJECT\Services\Session_service;
               <td><?=$user['email']?></td>
               <td><?=$user['company_name'] ?></td>
               <td><?=$user['role']?></td>
-              <td><a href="/orderly/public/admin/delete_user.php?id=<?=$user['id']?>" class="btn btn-primary" onclick="return confirm ('Are you sure?');">Delete</a></td>
+
+              <td>
+                <a href="edit_user.php?id=<?=$user['id']?>" class="btn btn-primary">Edit</a>
+              </td>
+              <td>
+                <form action="delete_user.php" method='POST'>
+                  <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                  <button class="btn btn-danger">Delete</button>
+                </form>
+              </td>  
             </tr>
           <?php endforeach; ?>
         </tbody>

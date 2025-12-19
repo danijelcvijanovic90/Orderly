@@ -88,4 +88,13 @@ class User extends Db
 
     }
 
+    public function delete_user_by_id(int $id): bool
+    {
+        $stmt=$this->pdo->prepare("DELETE FROM user WHERE id=:id");
+        $stmt->bindparam(":id",$id);
+        $stmt->execute();
+
+        return $result=$stmt->rowCount()>0;
+    }
+
 } 

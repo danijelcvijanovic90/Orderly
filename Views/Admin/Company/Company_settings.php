@@ -16,9 +16,6 @@
       <button class="nav-link active" id="add-company-tab" data-bs-toggle="tab" data-bs-target="#add-company" type="button" role="tab">Add Company</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="delete-company-tab" data-bs-toggle="tab" data-bs-target="#delete-company" type="button" role="tab">Delete Company</button>
-    </li>
-    <li class="nav-item" role="presentation">
       <button class="nav-link" id="list-companies-tab" data-bs-toggle="tab" data-bs-target="#list-companies" type="button" role="tab">All Companies</button>
     </li>
     <li class="nav-item" role="presentation">
@@ -53,17 +50,6 @@
       </form>
     </div>
 
-    <!-- Delete Company -->
-    <div class="tab-pane fade" id="delete-company" role="tabpanel">
-      <form action="company_delete.php" method="POST">
-        <div class="mb-3">
-          <label class="form-label">Company ID to Delete</label>
-          <input type="number" name="company_id" class="form-control" required>
-        </div>
-        <button class="btn btn-danger">Delete Company</button>
-      </form>
-    </div>
-
     <!-- All Companies -->
     <div class="tab-pane fade" id="list-companies" role="tabpanel">
       <h5>All Companies</h5>
@@ -74,20 +60,32 @@
             <th>ID</th>
             <th>Name</th>
             <th>Address</th>
-            <th>Phone</th>
+            <th>Notes</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          <?php
-          // foreach($companies as $c){
-          //   echo "<tr>
-          //     <td>{$c['id']}</td>
-          //     <td>{$c['name']}</td>
-          //     <td>{$c['address']}</td>
-          //     <td>{$c['phone']}</td>
-          //   </tr>";
-          // }
-          ?>
+          <?php foreach($companies as $company): ?>
+          <tr>
+            <td><?=$company['id']?></td>
+            <td><?=$company['name']?></td>
+            <td><?=$company['address']?></td>
+            <td><?=$company['notes']?></td>
+
+            <td>
+              <a href="edit_company.php" class="btn btn-primary">Edit</a>
+            </td>
+
+            <td>
+              <form action="delete_company.php" method="POST" onsubmit="return confirm('Are you sure!?')">
+                <input type="hidden" name='id' value="<?=$company['id']?>">
+                <button class='btn btn-danger' >Delete</button>
+              </form>
+            </td>
+          </tr>
+          <?php endforeach; ?>
+          
         </tbody>
       </table>
     </div>

@@ -93,7 +93,6 @@ class User_controller
     public function show_user(): array
     {
         $user = new User();
-        
         return $user->get_all_users_and_companies();
     }
 
@@ -101,6 +100,17 @@ class User_controller
     {
         $user=new User();
         return $users = $user->get_user_by_company($company_id);
+    }
+
+    public function delete_user(int $id): bool
+    {   
+        if(!isset($id) || empty($id))
+        {
+            return false;
+        }
+        
+        $user=new User();
+        return $result=$user->delete_user_by_id($id);
     }
    
 }
