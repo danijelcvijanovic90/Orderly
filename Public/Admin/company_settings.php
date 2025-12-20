@@ -18,3 +18,5 @@ else
 {
     echo "Invalid request!";
 }
+
+require_once __DIR__ . "/view_all_companies.php";

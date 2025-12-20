@@ -51,12 +51,34 @@ class Company extends Db
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function delete_company (string $name): bool
+    public function delete_company_by_id (int $id): bool
     {
-        $stmt = $this -> pdo -> prepare("DELETE FROM company WHERE name = :name");
-        $stmt -> bindparam(":name",$name);
+        $stmt = $this -> pdo -> prepare("DELETE FROM company WHERE id = :id");
+        $stmt -> bindparam(":id",$id);
         $stmt -> execute();
 
         return $stmt -> rowCount() > 0; // if something is deleted from DB return true
+    }
+
+    public function get_company_for_display(int $id): ?array
+    {
+        $stmt=$this->pdo->prepare("SELECT id,name,address,notes FROM company WHERE id=:id");
+        $stmt->bindparam(":id",$id);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
+    }
+
+    public function update_company_by_id(int $id,string $name,string $address, string $notes): bool
+    {
+        $stmt=$this->pdo->prepare("UPDATE company SET name=:name,address=:address,notes=:notes WHERE id=:id");
+        $stmt->bindparam(":name",$name);
+        $stmt->bindparam(":address",$address);
+        $stmt->bindparam(":notes",$notes);
+        $stmt->bindparam(":id",$id);
+        $stmt->execute();
+
+        return $stmt->rowCount()>0;
+
     }
 }

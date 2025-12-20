@@ -74,7 +74,10 @@
             <td><?=$company['notes']?></td>
 
             <td>
-              <a href="edit_company.php" class="btn btn-primary">Edit</a>
+              <form action="edit_company_decider.php" method="POST" >
+                <input type="hidden" name='id' value="<?=$company['id']?>">
+                <button class='btn btn-primary' >Edit</button>
+              </form>
             </td>
 
             <td>
