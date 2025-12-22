@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <!-- Orders -->
+        <!-- Products -->
         <div class="col">
             <div class="card text-center text-white bg-info h-100">
                 <div class="card-body d-flex flex-column justify-content-center">

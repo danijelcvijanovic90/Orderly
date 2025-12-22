@@ -1,6 +1,8 @@
 <?php
 
 namespace PROJECT\Models;
+use PROJECT\Models\Db;
+use PDO;
 
 class Category extends Db
 {
@@ -14,11 +16,14 @@ class Category extends Db
         return $stmt -> fetchColumn() > 0;
     }
 
-    public function add_category(string $category_name): void
+    public function add_category(string $category_name,string $description): bool
     {
-        $stmt = $this -> pdo -> prepare ("INSERT INTO category (name) VALUES (:name)");
-        $stmt -> bindparam(':name',$category_name);
-        $stmt -> execute();
+        $stmt=$this->pdo->prepare ("INSERT INTO category (name,description) VALUES (:name,:description)");
+        $stmt->bindparam(':name',$category_name);
+        $stmt->bindparam(':description',$description);
+        $stmt->execute();
+
+        return $stmt->rowCount()>0;
     }
 
     public function get_category_by_id(int $id) :?int
@@ -52,6 +57,7 @@ class Category extends Db
     public function get_all_categories() :array
     {
         $stmt = $this -> pdo -> prepare("SELECT * FROM category ORDER BY id DESC");
+        $stmt->execute();
         
         return $stmt -> fetchAll(PDO::FETCH_ASSOC);
     }
