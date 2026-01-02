@@ -76,7 +76,7 @@
                             <label class="form-label">Role</label>
                             <select name="role" class="form-select">
                                 <option value="user" <?= $user_info['role'] === 'user' ? 'selected': '' ?> >User</option>
-                                <option value="admin" <?= $user_info['role'] === 'admin' ? 'selected': '' ?>>Admin</option>
+                                <option value="admin" <?= $user_info['role'] === 'admin' ? 'selected': '' ?>>Admin</option> <!-- if user role is admin select this, else empty string -->
                             </select>
                         </div>
 

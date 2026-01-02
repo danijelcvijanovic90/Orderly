@@ -9,6 +9,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
+
+
+<body class="bg-light">
+
 <?php require_once __DIR__ . "/../../partials/header.php"; ?>
 
 <?php if(!empty($_SESSION['success'])): ?>
@@ -20,8 +24,6 @@
     <div class="alert alert-danger d-flex justify-content-center"><?= $_SESSION['error']; ?></div>
     <?php unset($_SESSION['error']); ?>
 <?php endif; ?>
-
-<body class="bg-light">
 
 <div class="container py-5">
 
@@ -41,18 +43,18 @@
   <!-- FILTER BY CATEGORY -->
   <div class="card mb-4">
     <div class="card-body">
-      <form class="row g-3 align-items-center">
+      <form class="row g-3 align-items-center" method='GET' action='/orderly/public/admin/products.php'>
         <div class="col-md-4">
           <label class="form-label">Filter by category</label>
-          <select class="form-select">
+          <select class="form-select" name='category_id'>
             <?php foreach($categories as $category): ?>
-            <option value="<?=$category['id']?>"><?=$category['name'] ?></option>
+            <option  value="<?=$category['id']?>"><?=$category['name'] ?></option>
             <?php endforeach ?>
           </select>
         </div>
 
         <div class="col-md-4 d-flex align-items-end">
-          <button class="btn btn-secondary w-100">Apply</button>
+          <button type='submit' class="btn btn-secondary w-100">Apply</button>
         </div>
       </form>
     </div>
@@ -64,37 +66,26 @@
       <table class="table table-hover align-middle">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
+            <th>ID</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Category</th>
+            <th>Category_id</th>
             <th class="text-end">Actions</th>
           </tr>
         </thead>
         <tbody>
-
+            <?php foreach($products as $product): ?>
           <tr>
-            <td>1</td>
-            <td>Hammer</td>
-            <td>Steel hammer with rubber handle</td>
-            <td>Tools</td>
+            <td><?=$product['id']?></td>
+            <td><?=$product['name']?></td>
+            <td><?=$product['description']?></td>
+            <td><?=$product['category_id']?></td> <!-- add category name, not category id -->
             <td class="text-end">
               <button class="btn btn-sm btn-warning">Edit</button>
-              <button class="btn btn-sm btn-danger">Delete</button>
+              <button class="btn btn-sm btn-danger">Delete</button> 
             </td>
           </tr>
-
-          <tr>
-            <td>2</td>
-            <td>Office Chair</td>
-            <td>Ergonomic chair with wheels</td>
-            <td>Furniture</td>
-            <td class="text-end">
-              <button class="btn btn-sm btn-warning">Edit</button>
-              <button class="btn btn-sm btn-danger">Delete</button>
-            </td>
-          </tr>
-
+            <?php endforeach; ?>
         </tbody>
       </table>
     </div>
@@ -112,26 +103,25 @@
         <button class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
-      <form>
+      <form action="add_product.php" method="POST">
         <div class="modal-body">
 
           <div class="mb-3">
             <label class="form-label">Product name</label>
-            <input type="text" class="form-control" placeholder="Enter product name">
+            <input type="text" class="form-control" name="name" placeholder="Enter product name">
           </div>
 
           <div class="mb-3">
             <label class="form-label">Description</label>
-            <textarea class="form-control" rows="3" placeholder="Product description"></textarea>
+            <textarea class="form-control" name="description" rows="3" placeholder="Product description"></textarea>
           </div>
 
           <div class="mb-3">
             <label class="form-label">Category</label>
-            <select class="form-select">
-              <option value="">Select category</option>
-              <option value="Electronics">Electronics</option>
-              <option value="Furniture">Furniture</option>
-              <option value="Tools">Tools</option>
+            <select class="form-select" name='category_id'>
+            <?php foreach($categories as $category): ?>
+            <option value="<?=$category['id']?>"><?=$category['name'] ?></option>
+            <?php endforeach ?>
             </select>
           </div>
 
