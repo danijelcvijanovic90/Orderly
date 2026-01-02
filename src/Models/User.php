@@ -33,6 +33,31 @@ class User extends Db
 
     }
 
+    public function update_user_with_password(int $id,string $name, string $surname, ?string $email, string $password, string $role, string $username): void
+    {
+        $stmt=$this->pdo->prepare("UPDATE user SET name=:name,surname=:surname,email=:email,password=:password,role=:role,username=:username WHERE id=:id");
+        $stmt->bindparam(":id",$id);
+        $stmt->bindparam(":name",$name);
+        $stmt->bindparam(":surname",$surname);
+        $stmt->bindparam(":email",$email);
+        $stmt->bindparam(":password",$password);
+        $stmt->bindparam(":role",$role);
+        $stmt->bindparam(":username",$username);
+        $stmt->execute();
+    }
+
+        public function update_user_without_password(int $id,string $name, string $surname, ?string $email, string $role, string $username): void
+    {
+        $stmt=$this->pdo->prepare("UPDATE user SET name=:name,surname=:surname,email=:email,role=:role,username=:username WHERE id=:id");
+        $stmt->bindparam(":id",$id);
+        $stmt->bindparam(":name",$name);
+        $stmt->bindparam(":surname",$surname);
+        $stmt->bindparam(":email",$email);
+        $stmt->bindparam(":role",$role);
+        $stmt->bindparam(":username",$username);
+        $stmt->execute();
+    }
+
     public function get_user_by_username(string $username): ?array
     {
         $stmt = $this -> pdo -> prepare ("SELECT * FROM user WHERE username = :username");
@@ -53,18 +78,18 @@ class User extends Db
 
     public function get_user_by_id(int $id): ?array
     {
-        $stmt = $this -> pdo -> prepare("SELECT * FROM user WHERE id = :id");
-        $stmt -> bindparam(":id",$id);
-        $stmt -> execute();
+        $stmt=$this->pdo->prepare("SELECT * FROM user WHERE id = :id");
+        $stmt->bindparam(":id",$id);
+        $stmt->execute();
 
-        $user = $stmt -> fetch(PDO::FETCH_ASSOC);
+        $user=$stmt->fetch(PDO::FETCH_ASSOC);
 
         return $user ?: null;
     }
 
     public function get_user_by_company (int $company_id) :array
     {
-        $stmt = $this->pdo-> prepare 
+        $stmt=$this->pdo-> prepare 
         ("SELECT u.*, c.name AS company_name 
         FROM user u
         LEFT JOIN company c ON u.company_id = c.id

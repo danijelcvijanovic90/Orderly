@@ -92,14 +92,48 @@ class User_controller
 
     public function show_user(): array
     {
-        $user = new User();
+        $user=new User();
         return $user->get_all_users_and_companies();
+    }
+
+    public function edit_user(array $data): bool
+    {   
+        if(empty($data['name']) || empty($data['surname']) || empty($data['role']) || empty($data['username']))
+        {
+            return false;
+        }
+
+        $update_user=new User();
+        $data_id = (int)$data['id'];
+        $email=$data['email'] ?? null;
+        if(!empty($data['password']))
+        {   
+            $password_hash=password_hash($data['password'],PASSWORD_BCRYPT);
+            $update_user->update_user_with_password($data_id,$data['name'],$data['surname'],$email,$password_hash,$data['role'],$data['username']);
+        }
+        else
+        {
+            $update_user->update_user_without_password($data_id,$data['name'],$data['surname'],$email,$data['role'],$data['username']);
+        }
+
+        return true;
+    }
+
+    public function show_user_by_id(int $id): array
+    {   
+        if(!isset($id) || empty($id))
+        {
+            return false;
+        }
+
+        $user=new User();
+        return $result=$user->get_user_by_id($id);   
     }
 
     public function user_by_company($company_id): array
     {
         $user=new User();
-        return $users = $user->get_user_by_company($company_id);
+        return $users=$user->get_user_by_company($company_id);
     }
 
     public function delete_user(int $id): bool

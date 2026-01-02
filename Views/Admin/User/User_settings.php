@@ -47,7 +47,7 @@ use PROJECT\Services\Session_service;
     endif;
     ?>  
 
-  <!-- if session success show message get from session[$key] and unset session -success. Message stay until refresh, consider another aproach -->
+  <!-- if session success show message get from session[$key] and unset session -success. Message stay until refresh -->
 
     <div class="tab-pane fade show active" id="add-user" role="tabpanel">
       <input type="hidden" name="add_user">
@@ -117,7 +117,7 @@ use PROJECT\Services\Session_service;
               <td><?=$user['role']?></td>
 
               <td>
-                <a href="edit_user.php?id=<?=$user['id']?>" class="btn btn-primary">Edit</a>
+                <a href="edit_user_redirect.php?id=<?=$user['id']?>" class="btn btn-primary">Edit</a>
               </td>
               <td>
                 <form action="delete_user.php" method='POST'>

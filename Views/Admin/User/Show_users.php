@@ -21,6 +21,7 @@
         <th>Company</th>
         <th>Email</th>
         <th>Role</th>
+        <th>Edit</th>
         <th>Delete</th>
       </tr>
     </thead>
@@ -34,7 +35,10 @@
             <td><?= $user['company_name'] ?></td>
             <td><?= $user['email'] ?></td>
             <td><?= $user['role'] ?></td>
-            <td><a href="/orderly/public/admin/delete_user.php?id=<?=$user['id']?>" onclick="return confirm('Are you sure?');" class="btn btn-primary">Delete</a></td>
+            <td>
+              <a href="edit_user_redirect.php?id=<?=$user['id']?>" class="btn btn-primary">Edit</a>
+            </td>
+            <td><a href="/orderly/public/admin/delete_user.php?id=<?=$user['id']?>" onclick="return confirm('Are you sure?');" class="btn btn-danger">Delete</a></td>
           </tr>
         <?php endforeach; ?>
       <?php else: ?>
