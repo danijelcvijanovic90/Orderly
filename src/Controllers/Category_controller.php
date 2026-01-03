@@ -24,6 +24,17 @@ class Category_controller
         return $category->add_category($data['name'],$data['description']);
     }
 
+    public function delete_category_by_id(int $id): bool
+    {
+        if(empty($id))
+        {
+            return false;
+        }
+
+        $category=new Category();
+        return $category->delete_category_by_id($id);
+    }
+
 }
 
 

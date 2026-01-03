@@ -64,6 +64,19 @@
             </div>
         </div>
 
+        <!-- Menu -->
+
+         <div class="col">
+            <div class="card text-center text-white bg-dark h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <i class="bi bi-menu-up fs-1"></i>
+                    <h5 class="card-title mt-3">Menu</h5>
+                    <p class="card-text">Manage Menu</p>
+                    <a href="products.php" class="btn btn-light mt-auto">Open</a>
+                </div>
+            </div>
+        </div>
+
          <!-- Messages -->
         <div class="col">
             <div class="card text-center text-white bg-secondary h-100">

@@ -9,6 +9,7 @@ $dotenv->load();
 
 $id=(int)$_POST['id'];
 
+
 $company=new Company_controller();
 $deleted=$company->delete_company($id);
 

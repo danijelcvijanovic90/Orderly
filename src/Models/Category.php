@@ -35,13 +35,13 @@ class Category extends Db
         return $stmt -> fetchColumn() ?: null;        
     }
 
-    public function delete_category(string $category_name) :bool
+    public function delete_category_by_id(int $id) :bool
     {
-        $stmt = $this -> pdo -> prepare ("DELETE FROM category WHERE name = :name");
-        $stmt -> bindparam(':name', $category_name);
-        $stmt -> execute();
+        $stmt=$this->pdo-> prepare ("DELETE FROM category WHERE id=:id");
+        $stmt->bindparam(':id', $id);
+        $stmt->execute();
 
-        return $stmt -> rowCount() > 0;
+        return $stmt->rowCount()>0;
     }
     
     public function update_category(string $category_name, int $id) :bool

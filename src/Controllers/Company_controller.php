@@ -40,11 +40,11 @@ class Company_controller
 
     public function delete_company(int $id):bool
     {
-        if(!isset($id) || empty($id))
+        if(!isset($id) || empty($id) || $id===12)
         {
             return false;
         }
-        else
+        if($id != 12 || $id > 0)
         {
             $company=new Company();
             return $result=$company->delete_company_by_id($id);

@@ -25,6 +25,27 @@
     <?php unset($_SESSION['error']); ?>
 <?php endif; ?>
 
+
+<?php if(!empty($_SESSION['delete_success'])): ?>
+    <div class="alert alert-success d-flex justify-content-center"><?= $_SESSION['delete_success']; ?></div>
+    <?php unset($_SESSION['delete_success']); ?>
+<?php endif; ?>
+
+<?php if(!empty($_SESSION['delete_error'])): ?>
+    <div class="alert alert-danger d-flex justify-content-center"><?= $_SESSION['delete_error']; ?></div>
+    <?php unset($_SESSION['delete_error']); ?>
+<?php endif; ?>
+
+<?php if(!empty($_SESSION['category_delete_success'])): ?>
+    <div class="alert alert-success d-flex justify-content-center"><?= $_SESSION['category_delete_success']; ?></div>
+    <?php unset($_SESSION['category_delete_success']); ?>
+<?php endif; ?>
+
+<?php if(!empty($_SESSION['category_delete_error'])): ?>
+    <div class="alert alert-danger d-flex justify-content-center"><?= $_SESSION['category_delete_error']; ?></div>
+    <?php unset($_SESSION['category_delete_error']); ?>
+<?php endif; ?>
+
 <div class="container py-5">
 
   <!-- PAGE HEADER -->
@@ -37,6 +58,10 @@
 
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
       + Add Category
+    </button>
+
+     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal">
+      - Delete Category
     </button>
   </div>
 
@@ -54,7 +79,7 @@
         </div>
 
         <div class="col-md-4 d-flex align-items-end">
-          <button type='submit' class="btn btn-secondary w-100">Apply</button>
+          <button type='submit' class="btn btn-secondary w-50">Apply</button>
         </div>
       </form>
     </div>
@@ -69,7 +94,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Category_id</th>
+            <th>Category</th>
             <th class="text-end">Actions</th>
           </tr>
         </thead>
@@ -79,10 +104,10 @@
             <td><?=$product['id']?></td>
             <td><?=$product['name']?></td>
             <td><?=$product['description']?></td>
-            <td><?=$product['category_id']?></td> <!-- add category name, not category id -->
+            <td><?=$product['category_name']?></td>
             <td class="text-end">
-              <button class="btn btn-sm btn-warning">Edit</button>
-              <button class="btn btn-sm btn-danger">Delete</button> 
+              <a href="edit_product.php?product_id=<?=$product['id']?>" class="btn btn-primary">Edit</a>
+              <a href="delete_product.php?id=<?=$product['id']?>" onclick="return confirm('Are you sure?');" class="btn btn-danger">Delete</a> 
             </td>
           </tr>
             <?php endforeach; ?>
@@ -90,7 +115,7 @@
       </table>
     </div>
   </div>
-
+  <a href="admin_dashboard.php" class="btn btn-secondary mt-5">Back</a>
 </div>
 
 <!-- ================= ADD PRODUCT MODAL ================= -->
@@ -125,6 +150,8 @@
             </select>
           </div>
 
+           
+
         </div>
 
         <div class="modal-footer">
@@ -153,18 +180,47 @@
           <div class="mb-3">
             <label class="form-label">Category name</label>
             <input type="text" name="name" class="form-control" placeholder="Enter category name">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Description</label>
-            <textarea class="form-control" type="text" name="description" rows="3" placeholder="Category description"></textarea>
-          </div>
+            </div>
 
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           <button type="submit" class="btn btn-success">Save Category</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= DELETE CATEGORY MODAL ================= -->
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Category</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form action="delete_category.php" method=POST>
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select class="form-select" name='category_id'>
+            <?php foreach($categories as $category): ?>
+            <option value="<?=$category['id']?>"><?=$category['name'] ?></option>
+            <?php endforeach ?>
+            </select>
+          </div>
+
+        
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-danger">Delete</button>
         </div>
       </form>
 

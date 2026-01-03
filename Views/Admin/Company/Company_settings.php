@@ -18,9 +18,7 @@
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="list-companies-tab" data-bs-toggle="tab" data-bs-target="#list-companies" type="button" role="tab">All Companies</button>
     </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="details-company-tab" data-bs-toggle="tab" data-bs-target="#details-company" type="button" role="tab">Company Details</button>
-    </li>
+    
   </ul>
 
   <div class="tab-content mt-3">
@@ -92,42 +90,8 @@
         </tbody>
       </table>
     </div>
-
-    <!-- Company Details -->
-    <div class="tab-pane fade" id="details-company" role="tabpanel">
-      <form action="company_details.php" method="GET" class="mb-3">
-        <div class="mb-3">
-          <label class="form-label">Company Name</label>
-          <input type="text" name="name" class="form-control" placeholder="Enter company name">
-        </div>
-        <button class="btn btn-secondary" type="submit">Search</button>
-      </form>
-
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          // foreach($filtered as $f){
-          //   echo "<tr>
-          //     <td>{$f['id']}</td>
-          //     <td>{$f['name']}</td>
-          //     <td>{$f['address']}</td>
-          //     <td>{$f['phone']}</td>
-          //   </tr>";
-          // }
-          ?>
-        </tbody>
-      </table>
-    </div>
-
   </div>
+  <a href="admin_dashboard.php" class="btn btn-secondary mt-5">Back</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

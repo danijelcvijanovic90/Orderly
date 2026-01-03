@@ -32,7 +32,7 @@ use PROJECT\Services\Session_service;
   </ul>
 
   <!-- Tab panes -->
-  <div class="tab-content mt-3">
+  <div class="tab-content mt-3 ">
     <!-- Add User -->
 
     <?php
@@ -49,7 +49,7 @@ use PROJECT\Services\Session_service;
 
   <!-- if session success show message get from session[$key] and unset session -success. Message stay until refresh -->
 
-    <div class="tab-pane fade show active" id="add-user" role="tabpanel">
+    <div class="tab-pane fade show active " id="add-user" role="tabpanel">
       <input type="hidden" name="add_user">
       <form action="../admin/add_user.php" method="POST">
         <input type="hidden" name="add_user">
@@ -77,12 +77,13 @@ use PROJECT\Services\Session_service;
         <div class="mb-3">
           <label for="role" class="form-label">Role</label>
           <select name="role" id="role" class="form-select">
-            <option value="user">user</option>
-            <option value="admin">admin</option>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Add User</button>
+        <button type="submit" class="btn btn-primary ">Add User</button>
       </form>
+       
     </div>
 
     
@@ -143,8 +144,11 @@ use PROJECT\Services\Session_service;
         </div>
         <button type="submit" class="btn btn-secondary">Filter</button>
       </form>
+
+      
  
     </div>
+    <a href="admin_dashboard.php" class="btn btn-secondary mt-5">Back</a>
 
   </div>
 </div>

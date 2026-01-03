@@ -23,4 +23,43 @@ class Product_controller
         $get_products=new Product();
         return $result=$get_products->get_products_by_category_id($category_id);       
     }
+
+    public function delete_product_by_id(int $id): bool
+    {
+        if(empty($id))
+        {
+            return false;
+        }
+
+        $id=(int)$id;
+
+        $product=new Product();
+        return $product->delete_product_by_id($id);
+    }
+
+    public function get_product_by_id(int $id): array
+    {
+        if(empty($id))
+        {
+            return false;
+        }
+
+        $id=(int)$id;
+
+        $product=new Product();
+        return $result=$product->get_product_by_id($id);
+    }
+
+    public function update_product_by_id(array $data): bool
+    {
+        if(empty($data['id']))
+        {
+            return false;
+        }
+        $id=(int)$data['id'];
+
+        $product=new Product();
+        return $result=$product->update_product_by_id($data['id'],$data['name'],$data['description'],$data['category_id']);
+    }
+    
 }
