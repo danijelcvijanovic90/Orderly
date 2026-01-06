@@ -72,7 +72,7 @@
                     <i class="bi bi-menu-up fs-1"></i>
                     <h5 class="card-title mt-3">Menu</h5>
                     <p class="card-text">Manage Menu</p>
-                    <a href="products.php" class="btn btn-light mt-auto">Open</a>
+                    <a href="menu.php" class="btn btn-light mt-auto">Open</a>
                 </div>
             </div>
         </div>

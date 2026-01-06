@@ -21,7 +21,7 @@ class Category_controller
         {
             return false;
         }
-        return $category->add_category($data['name'],$data['description']);
+        return $category->add_category($data['name']);
     }
 
     public function delete_category_by_id(int $id): bool

@@ -46,13 +46,13 @@ $session = new Session_service();
         </li>
         <?php endif; ?>
 
-        <?php if(isset($_SESSION['logedin'])): ?>
+        <?php if(isset($_SESSION['logedin_user'])): ?>
         <li class="nav-item">
           <a class="nav-link" href="/user_dashboard.php">User settings</a>
         </li>
         <?php endif; ?>
 
-        <?php if (!isset($_SESSION['logedin_admin']) && !isset($_SESSION['logedin'])): ?>
+        <?php if (!isset($_SESSION['logedin_admin']) && !isset($_SESSION['logedin_user'])): ?>
         <li class="nav-item">
           <a class="nav-link" href="login.php">Login</a>
         </li>

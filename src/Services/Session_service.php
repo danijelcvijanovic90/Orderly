@@ -35,9 +35,22 @@ class Session_service
 
     public function is_admin(): bool
     {
-        if($_SESSION['logedin_admin'])
+        if(!$_SESSION['logedin_admin'])
         {
-            return true;
+            header ("location: /orderly/public/login.php");
+            exit;
         }
+        return true;
     }
+
+    public function is_user(): bool
+    {
+        if(!$_SESSION['logedin_user'])
+        {
+            header ("location: /orderly/public/login.php");
+            exit;
+        }
+        return true;
+    }
+
 }

@@ -8,6 +8,27 @@
 </head>
 <body>
 <?php require_once __DIR__ . "\..\..\Partials\Header.php" ?>
+
+<?php if(!empty($_SESSION['success'])): ?>
+<div class="alert alert-success d-flex justify-content-center"><?= $_SESSION['success']; ?></div>
+  <?php unset($_SESSION['success']); ?>
+<?php endif; ?>
+
+<?php if(!empty($_SESSION['error'])): ?>
+<div class="alert alert-danger d-flex justify-content-center"><?= $_SESSION['error']; ?></div>
+  <?php unset($_SESSION['error']); ?>
+<?php endif; ?>
+
+<?php if(!empty($_SESSION['delete_success'])): ?>
+<div class="alert alert-success d-flex justify-content-center"><?= $_SESSION['delete_success']; ?></div>
+  <?php unset($_SESSION['delete_success']); ?>
+<?php endif; ?>
+
+<?php if(!empty($_SESSION['delete_error'])): ?>
+<div class="alert alert-danger d-flex justify-content-center"><?= $_SESSION['delete_error']; ?></div>
+  <?php unset($_SESSION['delete_error']); ?>
+<?php endif; ?>
+
 <div class="container mt-5">
   <h2>Company Settings</h2>
 

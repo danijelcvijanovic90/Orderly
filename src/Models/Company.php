@@ -15,13 +15,15 @@ class Company extends Db
         return $stmt->rowCount() > 0;
     }
 
-    public function add_company(string $name,string $address,string $notes): void
+    public function add_company(string $name,string $address,string $notes): bool
     {
         $stmt = $this->pdo->prepare("INSERT INTO company (name,address,notes) VALUES (:name,:address,:notes)");
         $stmt->bindparam (":name",$name);
         $stmt->bindparam (":address",$address);
         $stmt->bindparam(":notes",$notes);
         $stmt->execute();
+
+        return $stmt->rowCount()>0;
     }
 
     public function get_company_by_name(string $name): ?array

@@ -8,10 +8,11 @@ use PROJECT\Services\Session_service;
 $dotenv=Dotenv::createImmutable(__DIR__ . "/../../");
 $dotenv->load();
 
+$session=new Session_service();
+$check=$session->is_admin();
+
 $update_user=new User_controller();
 $update_user->edit_user($_POST);
-
-$session=new Session_service();
 
 if($update_user)
 {

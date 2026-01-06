@@ -9,12 +9,11 @@ use PROJECT\Services\Session_service;
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
 $dotenv->load();
 
-
+$session=new Session_service();
+$check=$session->is_admin();
 
 $company = new Company_controller();
 $update=$company->update_company($_POST);
-
-$session=new Session_service();
 
 if($update)
 {

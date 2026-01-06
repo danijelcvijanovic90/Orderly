@@ -8,27 +8,24 @@ class Company_controller
 {
 
 
-    public function new_company(array $data)
+    public function new_company(array $data): bool
     {
        
-        if(empty($data['name']))
+        if(empty($data['name']) || empty($data['address']))
         {
-            die("Please provide company name");
+            return false;
         }
 
-        if(empty($data['address']))
-        {
-            die("Plase provide company name");
-        }
-
+      
         $company = new Company();
-            
-        if($company->company_exists($data['name']))
+        if(!$company->company_exists($data['name']))
         {
-            die("Company allready exists");
+            return $result=$company->add_company($data['name'],$data['address'],$data['notes']); 
         }
-
-        $company->add_company($data['name'],$data['address'],$data['notes']); 
+        else
+        {
+            return false;
+        }
 
     }
 
@@ -40,7 +37,7 @@ class Company_controller
 
     public function delete_company(int $id):bool
     {
-        if(!isset($id) || empty($id) || $id===12)
+        if(empty($id) || $id===12)
         {
             return false;
         }

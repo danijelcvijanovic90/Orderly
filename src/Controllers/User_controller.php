@@ -8,7 +8,7 @@ use PROJECT\Models\Company;
 
 class User_controller
 {
-    public function login(array $data)
+    public function login(array $data): array
     {
         if(empty($data['username']))
         {
@@ -42,11 +42,11 @@ class User_controller
 
         $session = new Session_service;
         $session->set_session("user_id",$user_data["id"]);
-
+       
         switch($user_data['role'])
         {
             case "user":
-                $session->set_session("logedin",true);
+                $session->set_session("logedin_user",true);
                 header ("location: user/user_dashboard.php");
                 exit;
 
@@ -56,9 +56,8 @@ class User_controller
                 exit;
 
             default:
-                die ("Uknown user role");
+                header ("location: index.php");
         }
-        
     }
     
 

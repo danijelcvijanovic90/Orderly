@@ -58,5 +58,13 @@ class Product extends Db
 
         return $stmt->rowCount()>0;
     }
+
+    public function get_all_products(): array
+    {
+        $stmt=$this->pdo->prepare("SELECT * FROM meals");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     
 }

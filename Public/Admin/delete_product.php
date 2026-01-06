@@ -8,10 +8,11 @@ use PROJECT\Services\Session_service;
 $dotenv=Dotenv::createImmutable(__DIR__ . "/../../");
 $dotenv->load();
 
+$session=new Session_service();
+$check=$session->is_admin();
+
 $product=new Product_controller();
 $result=$product->delete_product_by_id($_GET['id']);
-
-$session=new Session_service();
 
 if($result)
 {

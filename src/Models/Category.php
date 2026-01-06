@@ -16,11 +16,10 @@ class Category extends Db
         return $stmt -> fetchColumn() > 0;
     }
 
-    public function add_category(string $category_name,string $description): bool
+    public function add_category(string $category_name): bool
     {
-        $stmt=$this->pdo->prepare ("INSERT INTO category (name,description) VALUES (:name,:description)");
+        $stmt=$this->pdo->prepare ("INSERT INTO category (name) VALUES (:name)");
         $stmt->bindparam(':name',$category_name);
-        $stmt->bindparam(':description',$description);
         $stmt->execute();
 
         return $stmt->rowCount()>0;

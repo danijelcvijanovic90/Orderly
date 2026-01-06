@@ -61,5 +61,11 @@ class Product_controller
         $product=new Product();
         return $result=$product->update_product_by_id($data['id'],$data['name'],$data['description'],$data['category_id']);
     }
+
+    public function get_all_products(): array
+    {
+        $product=new Product();
+        return $result=$product->get_all_products();
+    }
     
 }

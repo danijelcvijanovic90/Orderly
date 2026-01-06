@@ -2,10 +2,14 @@
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 use PROJECT\Controllers\Company_controller;
+use PROJECT\Services\Session_service;
 use Dotenv\Dotenv;
 
 $dotenv=Dotenv::createImmutable(__DIR__ . "/../../");
 $dotenv->load();
+
+$session=new Session_service();
+$check=$session->is_admin();
 
 $id=(int)($_POST['id'] ?? $_GET['id'] ?? 0);
 
@@ -16,8 +20,6 @@ if ($id <= 0) {
 
 $company_controller=new Company_controller();
 $company=$company_controller->company_for_display($id);
-
-
 
 if(!$company)
 {

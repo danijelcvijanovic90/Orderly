@@ -8,15 +8,20 @@ use PROJECT\Services\Session_service;
 $dotenv=Dotenv::createImmutable(__DIR__ . "/../../");
 $dotenv->load();
 
+$session=new Session_service();
+$check=$session->is_admin();
+
 $category=new Category_controller();
 $new_category=$category->new_category($_POST);
 
+
 $session=new Session_service();
+$check=$session->is_admin();
+
 
 if($new_category)
 {
-    $session->set_session("success", "New Category added!");
-    
+    $session->set_session("success", "New Category added!");    
 }
 else
 {

@@ -76,15 +76,13 @@ class User extends Db
         return $stmt -> fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function get_user_by_id(int $id): ?array
+    public function get_user_by_id(int $id): array
     {
         $stmt=$this->pdo->prepare("SELECT * FROM user WHERE id = :id");
         $stmt->bindparam(":id",$id);
         $stmt->execute();
 
-        $user=$stmt->fetch(PDO::FETCH_ASSOC);
-
-        return $user ?: null;
+        return $user=$stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function get_user_by_company (int $company_id) :array

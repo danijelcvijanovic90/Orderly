@@ -107,7 +107,7 @@
             <td><?=$product['category_name']?></td>
             <td class="text-end">
               <a href="edit_product.php?product_id=<?=$product['id']?>" class="btn btn-primary">Edit</a>
-              <a href="delete_product.php?id=<?=$product['id']?>" onclick="return confirm('Are you sure?');" class="btn btn-danger">Delete</a> 
+              <a href="delete_product.php?id=<?=$product['id']?>" onclick="return confirm('Are you sure? Meal will be removed from menu as well!');" class="btn btn-danger">Delete</a> 
             </td>
           </tr>
             <?php endforeach; ?>
