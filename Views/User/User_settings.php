@@ -12,22 +12,20 @@
 
 <?php require_once __DIR__ . "/../../views/partials/header.php"; ?>
 
+<?php if (!empty($_SESSION['success'])): ?>
+<div class="alert alert-success"><?= $_SESSION['success']; unset($_SESSION['success']); ?></div>
+<?php endif; ?>
+            
+<?php if (!empty($_SESSION['error'])): ?>
+<div class="alert alert-danger"><?= $_SESSION['error']; unset($_SESSION['error']); ?></div>
+ <?php endif; ?>
+
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
 
-            <h2 class="mb-4 text-center">Edit Your Profile</h2>
-
-            
-            <?php if (!empty($_SESSION['success'])): ?>
-                <div class="alert alert-success"><?= $_SESSION['success']; unset($_SESSION['success']); ?></div>
-            <?php endif; ?>
-            
-            <?php if (!empty($_SESSION['error'])): ?>
-                <div class="alert alert-danger"><?= $_SESSION['error']; unset($_SESSION['error']); ?></div>
-            <?php endif; ?>
-
-            <form action="update_user.php" method="POST" class="p-4 border rounded bg-white">
+            <h2 class="mb-4 text-center">Edit Your Profile <?="<br/>". $user['name'] ." ". $user['surname']?></h2>
+               <form action="update_user.php" method="POST" class="p-4 border rounded bg-white">
                 <div class="mb-3">
                     <label for="name" class="form-label">First Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="<?=$user['name']?>" required>
@@ -62,7 +60,10 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+                <button class='btn btn-secondary d-flex mt-5' onclick="history.back()" >Back</button>
             </form>
+
+            
 
         </div>
     </div>

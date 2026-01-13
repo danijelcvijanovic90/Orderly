@@ -43,22 +43,6 @@
             </div>
         </div>
 
-        <!-- My Orders -->
-        <div class="col">
-            <div class="card text-center text-white bg-primary h-100">
-                <div class="card-body d-flex flex-column justify-content-center">
-                    <i class="bi bi-list-check fs-1"></i>
-                    <h5 class="card-title mt-3">My Orders</h5>
-                    <p class="card-text">
-                        View your order history
-                    </p>
-                    <a href="my_orders.php" class="btn btn-light mt-auto">
-                        Open
-                    </a>
-                </div>
-            </div>
-        </div>
-
         <!-- Settings -->
         <div class="col">
             <div class="card text-center text-white bg-dark h-100">

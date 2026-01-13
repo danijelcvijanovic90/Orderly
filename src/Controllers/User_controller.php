@@ -202,5 +202,7 @@ class User_controller
         return $user_model->update_password_with_user_id($user_id,$password_hash); 
         
     }
+
+   
    
 }

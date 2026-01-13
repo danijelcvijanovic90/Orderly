@@ -26,90 +26,20 @@
   <!-- Days cards -->
   <div class="row g-4">
 
+    <?php foreach($days as $day_name): ?>
     <!-- Monday -->
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <a href="day.php?day=monday" class="text-decoration-none">
+      <a href="day.php?day=<?=$day_name['day']?>" class="text-decoration-none">
         <div class="card text-center shadow-sm h-100">
           <div class="card-body">
-            <h5 class="card-title">Monday</h5>
+            <h5 class="card-title"><?=ucfirst($day_name['day'])?></h5>
             <span class="badge bg-primary">Edit</span>
           </div>
         </div>
       </a>
     </div>
-
-    <!-- Tuesday -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <a href="day.php?day=tuesday" class="text-decoration-none">
-        <div class="card text-center shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="card-title">Tuesday</h5>
-            <span class="badge bg-primary">Edit</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Wednesday -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <a href="day.php?day=wednesday" class="text-decoration-none">
-        <div class="card text-center shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="card-title">Wednesday</h5>
-            <span class="badge bg-primary">Edit</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Thursday -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <a href="day.php?day=thursday" class="text-decoration-none">
-        <div class="card text-center shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="card-title">Thursday</h5>
-            <span class="badge bg-primary">Edit</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Friday -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <a href="day.php?day=friday" class="text-decoration-none">
-        <div class="card text-center shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="card-title">Friday</h5>
-            <span class="badge bg-primary">Edit</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Saturday -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <a href="day.php?day=saturday" class="text-decoration-none">
-        <div class="card text-center shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="card-title">Saturday</h5>
-            <span class="badge bg-primary">Edit</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Sunday -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <a href="day.php?day=sunday" class="text-decoration-none">
-        <div class="card text-center shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="card-title">Sunday</h5>
-            <span class="badge bg-primary">Edit</span>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
+    <?php endforeach; ?>
+</div>
   <a href="admin_dashboard.php" class="btn btn-secondary d-flex justify-content-center mt-5 w-25">Back to dashboard</a>
 </div>
 
