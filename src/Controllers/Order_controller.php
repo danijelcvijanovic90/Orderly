@@ -34,6 +34,12 @@ public function get_week_start(): string
         return $current_week=$order->get_current_week($user_id);
     }
 
+    public function get_latest_current_week(): int
+    {   
+        $order=new Order();
+        return $current_week=$order->get_latest_current_week();
+    }
+
       public function user_menu(int $category_id): array
     {
         $order_model=new Order();
@@ -64,6 +70,26 @@ public function get_week_start(): string
     {
         $order=new Order();
         return $delete_user=$order->delete_order_by_user($user_id,$order_id);
+    }
+
+    public function get_orders_overview(int $current_week,string $week_start,int $company_id,int $category_id, int $day_id): array
+    {
+        
+        $current_date=date("Y-m-d");
+        $days_diff=(new DateTime($current_date))->diff(new DateTime($week_start))->days;
+        $current_week_now=floor($days_diff/7);
+
+        $order=new Order();
+
+         if($current_week_now == $current_week)
+        {
+            return $orders=$order->get_orders_overview($current_week,$company_id,$category_id,$day_id);
+        }
+
+        else
+        {
+            return [];
+        }
     }
 }
 

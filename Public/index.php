@@ -35,8 +35,6 @@
           <img src="https://picsum.photos/300/200?random=1" class="card-img-top" alt="Product 1">
           <div class="card-body">
             <h5 class="card-title">Product 1</h5>
-            <p class="card-text">$12.99</p>
-            <a href="#" class="btn btn-warning w-100">Order Now</a>
           </div>
         </div>
       </div>
@@ -45,8 +43,6 @@
           <img src="https://picsum.photos/300/200?random=2" class="card-img-top" alt="Product 2">
           <div class="card-body">
             <h5 class="card-title">Product 2</h5>
-            <p class="card-text">$9.99</p>
-            <a href="#" class="btn btn-warning w-100">Order Now</a>
           </div>
         </div>
       </div>
@@ -55,8 +51,6 @@
           <img src="https://picsum.photos/300/200?random=3" class="card-img-top" alt="Product 3">
           <div class="card-body">
             <h5 class="card-title">Product 3</h5>
-            <p class="card-text">$15.50</p>
-            <a href="#" class="btn btn-warning w-100">Order Now</a>
           </div>
         </div>
       </div>
@@ -65,8 +59,6 @@
           <img src="https://picsum.photos/300/200?random=4" class="card-img-top" alt="Product 4">
           <div class="card-body">
             <h5 class="card-title">Product 4</h5>
-            <p class="card-text">$8.75</p>
-            <a href="#" class="btn btn-warning w-100">Order Now</a>
           </div>
         </div>
       </div>

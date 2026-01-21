@@ -19,7 +19,7 @@
     <!-- FILTERS -->
     <div class="card mb-4">
         <div class="card-body">
-            <form method="GET" class="row g-3 align-items-end">
+            <form method="POST" action="orders_admin.php" class="row g-3 align-items-end">
 
                 <!-- COMPANY SELECT -->
                 <div class="col-md-3">
@@ -73,8 +73,8 @@
     </div>
 
     <!-- RESULTS -->
-    <?php if(!empty($orders_by_day)):?>
-        <?php foreach($orders_by_day as $day => $meals):?>
+    <?php if(!empty($grouped_order)):?>
+        <?php foreach($grouped_order as $day => $meals):?>
 
             <div class="card mb-4">
                 <div class="card-header bg-dark text-white">
@@ -87,6 +87,7 @@
                             <tr>
                                 <th>Meal</th>
                                 <th class="text-center">Total Quantity</th>
+                                <th class="text-center">Category</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -94,7 +95,11 @@
                                 <tr>
                                     <td><?=($meal['meal_name']);?></td>
                                     <td class="text-center">
-                                        <strong><?=$meal['total_qty'];?></strong>
+                                        <strong><?=$meal['total_quantity'];?></strong>
+                                        
+                                    </td>
+                                    <td class="text-center">
+                                        <strong><?=$meal['category_name'];?></strong>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

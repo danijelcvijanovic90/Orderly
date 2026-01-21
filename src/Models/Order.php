@@ -47,6 +47,14 @@ public function get_week_start(): string
         return $stmt->fetchColumn();
     }
 
+     public function get_latest_current_week(): int
+    {
+        $stmt=$this->pdo->prepare("SELECT current_week FROM orders ORDER BY current_week DESC LIMIT 1");
+        $stmt->execute();
+
+        return $stmt->fetchColumn();
+    }
+
     public function user_menu($category_id): array
     {
         $stmt=$this->pdo->prepare("SELECT mm.id as menu_meal_id,mm.meal_id,mm.menu_id,m.day,ml.name meal_name,ml.category_id,ml.description,c.name as category_name
@@ -94,23 +102,29 @@ public function get_week_start(): string
     {
         
         $sql= "
-        SELECT m.day,ml.name as meal_name,c.name as category_name,
-        COUNT (o.id) as total_quantity
+        SELECT m.day,ml.name as meal_name,c.name as category_name,co.name as company_name,
+        COUNT(o.id) AS total_quantity
         FROM orders o
-        INNER JOIN menu as m ON o.menu_id=m.id
-        INNER JOIN meals as ml ON o.meal_id=ml.id
-        INNER JOIN category as c ON ml.category_id=c.id
+        INNER JOIN menu AS m ON o.menu_id=m.id
+        INNER JOIN meals AS ml ON o.meal_id=ml.id
+        INNER JOIN category AS c ON ml.category_id=c.id
+        INNER JOIN user AS u ON o.user_id=u.id
+        INNER JOIN company AS co ON u.company_id=co.id
         ";
+
+        //JOIN WITH DIFFERENT TABLES TO GET ALL DATA THAT YOU NEED FOR ORDER PANEL
 
         $where=[];
         $param=[];
+
+        // CREATE EMPTY ARRAYS FOR WHERE AND PARAM
 
         $where[]="o.current_week = :current_week";
         $param['current_week']=$current_week;
 
         if($company_id>0)
         {
-            $where[]="company_id = :company_id";
+            $where[]="u.company_id = :company_id";
             $param['company_id']=$company_id; // same as bindparam(":company_id",$company_id);
         }
 
@@ -122,8 +136,8 @@ public function get_week_start(): string
         
         if($day_id>0)
         {
-            $where[]="day_id = :day_id";
-            $param['day_id']=$day_id;
+            $where[]="m.id = :menu_id";
+            $param['menu_id']=$day_id;
         }
 
         if(!empty($where))
@@ -131,7 +145,7 @@ public function get_week_start(): string
             $sql .=" WHERE " . implode(" AND ", $where); //if not empty array $where implode array items with "AND".
         }
 
-        $sql .=" GROUP BY m.day,ml.name ORDER BY m.day,ml.name"; // add group by and order by at the end of query.
+        $sql .=" GROUP BY m.day,ml.name,c.name,co.name ORDER BY m.id ASC"; // add group by and order by at the end of query.
 
         $stmt=$this->pdo->prepare($sql);
         $stmt->execute($param); //execute $stmt with params

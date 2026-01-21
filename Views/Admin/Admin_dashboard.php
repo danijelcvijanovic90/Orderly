@@ -97,7 +97,7 @@
                     <i class="bi bi-bar-chart fs-1"></i>
                     <h5 class="card-title mt-3">Reports</h5>
                     <p class="card-text">View statistics</p>
-                    <a href="reports.php" class="btn btn-light mt-auto">Open</a>
+                    <a href="" class="btn btn-light mt-auto">Coming Soon</a>
                 </div>
             </div>
         </div>
